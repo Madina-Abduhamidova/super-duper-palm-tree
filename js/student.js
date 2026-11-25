@@ -17,26 +17,33 @@ function studentCard(arr) {
               <div class="card-header">
                 <div class="avatar" >KU</div>
                 <div class="user-main">
-                  <span class="user-id" name="userId">${id}</span>
-                  <h2 class="user-name" name="userName">${fullName}</h2>
-                  <p class="user-course" name="userCourse">${course}</p>
-                </div>
-              </div>
+                  <span class="user-id" >${id}</span>
+                  <h2 class="user-name">${fullName}</h2>
+                  <p class="user-course">${course}</p>
 
+                </div>
+                 <button class="user-card__delete" onclick=deleteStudent(${id}) type="button" aria-label="Delete">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              </button>
+              </div>
+ 
               <div class="card-divider"></div>
 
               <div class="card-stats">
                 <div class="stat-item">
                   <span class="stat-label">Age</span>
-                  <span class="stat-value" name="userAge">${age}</span>
+                  <span class="stat-value" >${age}</span>
                 </div>
                 <div class="stat-item">
                   <span class="stat-label">Grade</span>
-                  <span class="stat-value" name="userGrade">${grade}</span>
+                  <span class="stat-value" >${grade}</span>
                 </div>
                 <div class="stat-item">
                   <span class="stat-label">Status</span>
-                  <span class="badge" name="userStatus">${isGraduated ? `Bitirgan ` : `Bitirmagan`}</span>
+                  <span class="badge" >${isGraduated ? `Bitirgan ` : `Bitirmagan`}</span>
                 </div>
               </div>
            </div>
@@ -71,11 +78,11 @@ saqlashEl.addEventListener(`submit`, (e) => {
 
   let studentData = {
     id: Math.max(...students.map((students) => students.id)) + 1,
-    fullName: formData.get(`userName`),
-    course: formData.get(`userCourse`),
-    age: formData.get(`userAge`),
-    grade: formData.get(`userGrade`),
-    isGraduated: formData.get(`userStatus`) ? true : false,
+    fullName: formData.get(`fullName`),
+    course: formData.get(`course`),
+    age: formData.get(`age`),
+    grade: formData.get(`grade`),
+    isGraduated: formData.get(`isGraduated`) ? true : false,
   };
   console.log(studentData);
 
@@ -83,3 +90,11 @@ saqlashEl.addEventListener(`submit`, (e) => {
   studentCard(students);
   moadlEl.classList.add("hidden");
 });
+
+window.deleteStudent = function (id) {
+  let findStudent = students.findIndex((item) => item.id == id);
+  students.splice(findStudent, 1);
+  console.log(findStudent);
+
+  studentCard(students);
+};
