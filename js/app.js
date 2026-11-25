@@ -1,7 +1,7 @@
 import { users } from "../data/data.js";
 
 const usersEl = document.querySelector(`.users-container`);
-const yopishEl = document.querySelector(`.close-btn`);
+const yopishEl = document.querySelector(`.modal__close`);
 const moadlEl = document.querySelector(`#userModal`);
 const ochisEl = document.querySelector(`.add-btn`);
 const modal = document.querySelector(`.modal`);
@@ -31,6 +31,7 @@ function usersCard(arr) {
 usersCard(users);
 yopishEl.addEventListener(`click`, (e) => {
   moadlEl.classList.add("modalyopish");
+  console.log(1);
 });
 ochisEl.addEventListener(`click`, (e) => {
   e.stopPropagation();
