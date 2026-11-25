@@ -68,21 +68,18 @@ document.addEventListener(`click`, (e) => {
 saqlashEl.addEventListener(`submit`, (e) => {
   e.preventDefault();
   let formData = new FormData(e.target);
-  let name = formData.get(`name`).trim();
-  if (!name) {
-    alert(`ismni kiriting`);
-    return;
-  }
 
-  let userData = {
-    id: Math.max(...users.map((users) => users.id)) + 1,
-    name: name,
-    email: formData.get(`email`),
-    role: formData.get(`role`),
-    isActive: formData.get(`isActive`) ? true : false,
+  let studentData = {
+    id: Math.max(...students.map((students) => students.id)) + 1,
+    fullName: formData.get(`userName`),
+    course: formData.get(`userCourse`),
+    age: formData.get(`userAge`),
+    grade: formData.get(`userGrade`),
+    isGraduated: formData.get(`userStatus`) ? true : false,
   };
+  console.log(studentData);
 
-  users.push(userData);
-  usersCard(users);
-  moadlEl.classList.add("modalyopish");
+  students.push(studentData);
+  studentCard(students);
+  moadlEl.classList.add("hidden");
 });
